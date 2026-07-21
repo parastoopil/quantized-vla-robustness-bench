@@ -87,16 +87,16 @@ behaves differently, it just does not succeed less often.)
 
 ### 4. BitVLA — a natively-trained 1-bit model (secondary observation)
 BitVLA is not post-training quantized; it is trained ternary and has no FP16
-twin, so it is shown as a cross-model drop curve, not a matched comparison.
+twin, so it is reported entirely on its own terms — each perturbation measured
+against BitVLA's own clean anchor (95%).
 → **[docs/04_bitvla_native_lowbit.md](docs/04_bitvla_native_lowbit.md)**
 
-![BitVLA profile](figures/fig4_bitvla_profile.png)
+![BitVLA vs. its own clean anchor](figures/fig4_bitvla_profile.png)
 
-Its robustness *shape* differs from pi0.5's: markedly more robust to camera
-viewpoint, markedly less robust to language paraphrase and lighting. Included
-here to mark the contrast between post-training quantization (which tracks the
-FP16 model in this data) and native low-bit training (which does not). Seed-0,
-four axes still pending — treat as provisional.
+Of the three axes completed so far, language paraphrase moves it most (−28.8pp),
+then lighting (−14.5pp), with camera viewpoint the mildest (−11.5pp). Included as
+a separate look at how a natively-trained low-bit model behaves under shift.
+Seed-0, four axes still pending — treat as provisional.
 
 ---
 

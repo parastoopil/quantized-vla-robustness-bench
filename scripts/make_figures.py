@@ -131,24 +131,28 @@ def fig_parity():
     plt.close(fig)
 
 
-# --- Figure 4: BitVLA robustness profile (secondary observation) --------------
+# --- Figure 4: BitVLA vs. its own clean anchor (secondary observation) ---------
 def fig_bitvla():
     df = pd.read_csv(os.path.join(DATA, "bitvla_native_lowbit.csv"), comment="#")
+    clean = float(df.loc[df["axis"] == "clean", "bitvla_sr"].iloc[0])
     df = df[df["axis"] != "clean"]
     axes = df["axis"]
     x = np.arange(len(df))
-    w = 0.36
-    fig, ax = plt.subplots(figsize=(7.2, 4.4))
-    ax.bar(x - w / 2, df["bitvla_drop"], w, label="BitVLA (native ternary)", color=C_Q1, zorder=3)
-    ax.bar(x + w / 2, df["pi05_drop"], w, label="pi0.5 FP16", color=C_FP16, zorder=3)
-    ax.axhline(0, color=INK2, lw=1.0)
+    fig, ax = plt.subplots(figsize=(7.0, 4.4))
+    bars = ax.bar(x, df["bitvla_sr"], 0.6, color=C_Q1, zorder=3)
+    ax.axhline(clean, color=INK2, lw=1.4, ls="--", zorder=2)
+    ax.text(len(df) - 0.5, clean + 1.2, f"clean anchor = {clean:.0f}%",
+            ha="right", va="bottom", color=INK2, fontsize=10)
+    for xi, (sr, drop) in enumerate(zip(df["bitvla_sr"], df["drop"])):
+        ax.text(xi, sr + 1.2, f"{sr:.1f}\n({drop:+.1f})", ha="center", va="bottom",
+                color=INK, fontsize=9.5)
     style(ax)
     ax.set_xticks(x)
     ax.set_xticklabels(axes)
-    ax.set_ylabel("change vs. own clean anchor (pp)")
-    ax.set_title("BitVLA has a different shape, not a uniformly worse one\n(more robust to camera, less to language / lighting)",
+    ax.set_ylabel("task success rate (%)")
+    ax.set_ylim(0, 105)
+    ax.set_title("BitVLA vs. its own clean anchor\n(drop in pp shown under each bar)",
                  fontsize=11.5, color=INK, loc="left", pad=10)
-    ax.legend(frameon=False, loc="lower left")
     fig.tight_layout()
     fig.savefig(os.path.join(FIGS, "fig4_bitvla_profile.png"), dpi=150, bbox_inches="tight")
     plt.close(fig)
