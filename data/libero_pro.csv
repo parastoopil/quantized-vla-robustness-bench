@@ -1,0 +1,14 @@
+# LIBERO-PRO: semantic / compositional shift, pi0.5. 100 episodes per cell, seed 0.
+# sr = success rate (%). delta = fp16 - quant (positive => quantized worse).
+# task axis (goal rewritten, pixels fixed) is a base-model FLOOR for all 3 arms.
+axis,description,suite,fp16,w4a8,delta_w4a8,w4a4,delta_w4a4
+swap,object positions exchanged,spatial,47,44,3,45,2
+swap,object positions exchanged,goal,32,34,-2,32,0
+env,table/scene asset replaced,spatial,46,45,1,36,10
+env,table/scene asset replaced,goal,36,42,-6,40,-4
+lan,instruction paraphrased,spatial,95,96,-1,96,-1
+lan,instruction paraphrased,goal,99,97,2,99,0
+object,appearance/category swapped,spatial,95,100,-5,98,-3
+object,appearance/category swapped,goal,91,85,6,85,6
+task,goal rewritten pixels fixed,spatial,0,0,0,0,0
+task,goal rewritten pixels fixed,goal,9,7,2,10,-1

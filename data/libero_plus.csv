@@ -1,0 +1,12 @@
+# LIBERO-plus: visual / physical nuisance shift, pi0.5, LIBERO-spatial suite.
+# Each axis pools ALL perturbation variants (full-axis, not a difficulty stratum).
+# sr = task success rate (%). delta = fp16 - quant (positive => quantized worse).
+# Omega-QVLA W4A4 columns are means over seeds 0,1,2; QuantVLA W4A8 is seed 0.
+axis,n_per_arm_omega,fp16_omega,w4a4,delta_w4a4,fp16_quantvla,w4a8,delta_w4a8
+camera,376,73.5,73.9,-0.4,74.2,71.3,2.9
+sensor_noise,351,91.5,88.3,3.1,92.6,89.2,3.4
+robot_initial,350,85.0,84.8,0.3,87.4,86.3,1.1
+layout,385,98.5,97.8,0.7,98.2,97.1,1.0
+language,390,95.6,96.2,-0.6,95.4,96.7,-1.3
+light,292,98.6,99.3,-0.7,99.3,99.3,0.0
+background,258,99.6,99.1,0.5,99.6,99.2,0.4
