@@ -7,7 +7,7 @@ full-precision model across three families of perturbation: appearance/physical
 nuisance shift (LIBERO-plus), semantic/compositional shift (LIBERO-PRO), and
 injected action/pixel noise at graded doses.
 
-The repository is descriptive. It reports success rates and shows the
+This repo is descriptive. It reports success rates and shows the
 full-precision and quantized curves next to each other. It does not argue a
 thesis about quantization — the aim is simply to have a clean, reproducible
 picture of how these models act under shift, on the ~26,000 episodes we ran.
